@@ -1,0 +1,13 @@
+li {
+  list-style: none;
+}
+
+.lists {
+  background-color: rgb(249, 137, 0);
+  padding: 2rem 20rem;
+  text-align: center;
+}
+div{
+    margin-bottom: 1.5rem;
+ 
+}

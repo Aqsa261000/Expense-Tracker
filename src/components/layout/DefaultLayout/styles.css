@@ -1,0 +1,12 @@
+.container{
+    margin: 0;
+    padding:0;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+form{
+    background-color: bisque;
+    margin-top: 2rem;
+    padding: 2rem;
+}

@@ -1,25 +1,33 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
-
-function App() {
+import ExpenseForm from './components/features/ExpenseForm';
+import ExpenseList from './components/features/ExpenseList';
+import DefaultForm from './components/layout/DefaultLayout';
+const expenses = [
+  {
+    title: 'ABC Title',
+    price: 1700,
+    date: '2023-09-30',
+  },
+  {
+    title: 'EFG Road',
+    price: 2700,
+    date: '2023-09-31',
+  },
+];
+const App = () => {
+  const [expenseList, setExpenseList] = useState(expenses);
+  const AddExpense = (newExpense) => {
+    setExpenseList((prevData) => [ newExpense, ...prevData]);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <DefaultForm>
+        <ExpenseForm AddExpense={AddExpense} />
+        <h1 style={{ textAlign: 'center' }}>Expense List</h1>
+        <ExpenseList expenseList={expenseList} />
+      </DefaultForm>
+    </>
   );
-}
-
+};
 export default App;

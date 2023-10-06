@@ -10,21 +10,34 @@ const expenses = [
     date: '2023-09-30',
   },
   {
-    title: 'EFG Road',
+    title: 'DEF Road',
     price: 2700,
     date: '2023-09-31',
+  },
+  {
+    title: 'GHI Road',
+    price: 3700,
+    date: '2023-10-01',
+  },
+  {
+    title: 'JKL Road',
+    price: 4700,
+    date: '2023-10-02',
   },
 ];
 const App = () => {
   const [expenseList, setExpenseList] = useState(expenses);
   const AddExpense = (newExpense) => {
-    setExpenseList((prevData) => [ newExpense, ...prevData]);
+    setExpenseList((prevData) => [newExpense, ...prevData]);
   };
   return (
     <>
       <DefaultForm>
+        <div className="mainheadings">
+          <h1>Expense Tracker</h1>
+        </div>
         <ExpenseForm AddExpense={AddExpense} />
-        <h1 style={{ textAlign: 'center' }}>Expense List</h1>
+
         <ExpenseList expenseList={expenseList} />
       </DefaultForm>
     </>

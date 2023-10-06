@@ -1,12 +1,30 @@
-.container{
-    margin: 0;
-    padding:0;
-    display: grid;
-    align-items: center;
-    justify-items: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-form{
-    background-color: bisque;
-    margin-top: 2rem;
-    padding: 2rem;
+body {
+  overflow-x: hidden;
+}
+.fullcontainer {
+  width: 100%;
+  height: 100%;
+  background: url('../../../assets/backgroundpicture.avif') no-repeat center
+    center/cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+
+  position: relative;
+  z-index: 1;
+}
+.fullcontainer::before {
+  content: '';
+  position: absolute;
+  background-color: rgba(168, 168, 168, 0.7);
+
+  z-index: -1;
+  width: 100%;
+  height: 100%;
 }

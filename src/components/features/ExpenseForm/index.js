@@ -22,6 +22,7 @@ const ExpenseForm = ({
     title: '',
     price: '',
     date: '',
+    id: '',
   });
   // useEffect(() => {
   //   console.log('expenseDataa in useEffect:', expenseDataa);
@@ -53,6 +54,7 @@ const ExpenseForm = ({
       title: '',
       price: '',
       date: '',
+      id: '',
     });
     // console.log(expenseData);
   };

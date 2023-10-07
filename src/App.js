@@ -8,21 +8,25 @@ const expenses = [
     title: 'ABC Title',
     price: 1700,
     date: '2023-09-29',
+    id: 1,
   },
   {
     title: 'DEF Road',
     price: 2700,
     date: '2023-09-30',
+    id: 2,
   },
   {
     title: 'GHI Road',
     price: 3700,
     date: '2023-10-01',
+    id: 3,
   },
   {
     title: 'JKL Road',
     price: 4700,
     date: '2023-10-02',
+    id: 4,
   },
 ];
 const App = () => {
@@ -64,7 +68,7 @@ const App = () => {
   };
 
   const DeleteExpense = (id) => {
-    const filterArray = expenseList.filter((data) => data.id !== id);
+    const filterArray = expenseList.filter((data) => +data.id !== +id);
 
     setExpenseList(filterArray);
   };

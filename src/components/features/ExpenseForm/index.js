@@ -1,20 +1,60 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles.css';
 
-const ExpenseForm = ({ AddExpense }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const ExpenseForm = ({
+  AddExpense,
+  ExpenseDataa,
+  isModalOpen,
+  openModal,
+  closeModal,
+  updateExpenseList,
+}) => {
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+  // const openModal = () => {
+  //   setIsModalOpen(true);
+  // };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-  const [expenseData, setExpenseData] = useState('');
+  // const closeModal = () => {
+  //   setIsModalOpen(false);
+  // };
+  const [expenseData, setExpenseData] = useState({
+    title: '',
+    price: '',
+    date: '',
+  });
+  // useEffect(() => {
+  //   console.log('expenseDataa in useEffect:', expenseDataa);
+  // }, [expenseDataa]);
+
+  useEffect(() => {
+    setExpenseData({
+      title: ExpenseDataa?.title ?? '',
+      price: ExpenseDataa?.price ?? '',
+      date: ExpenseDataa?.date ?? '',
+      id: ExpenseDataa?.id ?? '',
+    });
+    // console.log(ExpenseDataa);
+  }, [ExpenseDataa]);
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    AddExpense(expenseData);
+
+    // AddExpense(expenseData);
+    // updateExpenseList(expenseData.title);
+    {
+      ExpenseDataa !== null
+        ? updateExpenseList({ id: ExpenseDataa?.id, ...expenseData })
+        : AddExpense({
+            id: Math.floor(Math.random() * 100),
+            ...expenseData,
+          });
+    }
+    setExpenseData({
+      title: '',
+      price: '',
+      date: '',
+    });
+    // console.log(expenseData);
   };
 
   const onChangeHandler = (e) => {
@@ -25,18 +65,7 @@ const ExpenseForm = ({ AddExpense }) => {
   };
   return (
     <>
-      <div className="addbutton">
-        <button
-          type="button"
-          data-toggle="modal"
-          data-target=".bd-example-modal-lg"
-          onClick={openModal}
-        >
-          Add Expense
-        </button>
-      </div>
-
-      {isModalOpen && (
+      {isModalOpen ? (
         <form onSubmit={onSubmitHandler}>
           <div>
             <label htmlFor="expenseTitle">Expense Title</label>
@@ -44,6 +73,7 @@ const ExpenseForm = ({ AddExpense }) => {
               type="text"
               id="expenseTitle"
               name="title"
+              value={expenseData.title}
               onChange={onChangeHandler}
             />
           </div>
@@ -53,6 +83,7 @@ const ExpenseForm = ({ AddExpense }) => {
               type="number"
               id="expenseName"
               name="price"
+              value={expenseData.price}
               onChange={onChangeHandler}
             />
           </div>
@@ -62,16 +93,30 @@ const ExpenseForm = ({ AddExpense }) => {
               type="date"
               id="expenseDate"
               name="date"
+              value={expenseData.date}
               onChange={onChangeHandler}
             />
           </div>
-          <div className='twobuttons'>
-            <button type="submit">Submit</button>
-            <button type="submit" onClick={closeModal}>
+          <div className="twobuttons">
+            <button type="submit">
+              {ExpenseDataa !== null ? 'Update' : 'Add'}
+            </button>
+            <button type="button" onClick={closeModal}>
               Cancel
             </button>
           </div>
         </form>
+      ) : (
+        <div className="addbutton">
+          <button
+            type="button"
+            data-toggle="modal"
+            data-target=".bd-example-modal-lg"
+            onClick={openModal}
+          >
+            Add Expense
+          </button>
+        </div>
       )}
       {/* <div className="addbutton">
         <button
